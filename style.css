@@ -1,13 +1,41 @@
+
+/**
+ * My terminal color scheme:
+ * 
+ * !! manta:
+ * .background:   #1E2541
+ * .foreground:   #EEFFFF
+ * .cursorColor:  #EEFFFF
+ * .color0:       #1E2541
+ * .color1:       #F0719B
+ * .color2:       #5AF7B0
+ * .color3:       #FFA56B
+ * .color4:       #57C7FF
+ * .color5:       #C792EA
+ * .color6:       #89DDFF
+ * .color7:       #EEFFFF
+ * .color8:       #354274
+ * .color9:       #F02E6E
+ * .color10:      #2CE592
+ * .color11:      #FF8537
+ * .color12:      #1DA0E2
+ * .color13:      #A742EA
+ * .color14:      #47BAE8
+ * .color15:      #DEE6E7
+ * .color16:      #2A335A
+ *
+**/
+
 html, body {
     margin: 0;
     padding: 0;
     background-color: #1E2541;
-    color: white;
+    color: #EEFFFF;
     font-family: 'Courier New', Courier, monospace;
 }
 
 header {
-    padding: 5px 10px 0 0;
+    padding: 5px 0 0 7px;
     font-size: 15px;
     display: flex;
     justify-content: space-between;
@@ -23,14 +51,16 @@ header {
 }
 
 nav a {
-    color: white;
+    color: #EEFFFF;
     text-decoration: none;
     padding: 0 3px;
 }
+
 nav a:not([id]):hover{
-    background-color: white;
+    background-color: #EEFFFF;
     color: black;
 }
+
 nav ul {
     list-style-type: none;
     display: flex;
@@ -39,8 +69,7 @@ nav ul {
 }
 
 nav li {
-    margin: 0 15px;
-    
+    margin: 0 15px;    
 }
 
 .content {
@@ -51,6 +80,11 @@ nav li {
 .description {
     font-size: 1em;
 }
+
+.contact-header {
+    color: #5AF7B0;
+}
+
 #selected {
     background-color: white;
     color: black;
@@ -62,6 +96,17 @@ nav li {
     height: 35vh;
 }
 
+.contact-links {
+    list-style-type: none;
+}
+
+.contact-links span {
+    color: #57C7FF;
+    padding-right: 5px;
+}
+.contact-links a {
+    color: white;
+}
 @media (max-width:499px){
     nav ul {
         flex-direction:  column;

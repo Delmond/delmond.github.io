@@ -15,7 +15,7 @@ const noiseHeight = 400;
 
 function initializeCanvas(canvasId){
     var canvas = document.getElementById(canvasId);
-    console.log(canvas.width)
+
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 
@@ -74,7 +74,6 @@ function main(){
     var perlin = new Perlin2D(256);
 
     const { width, height } = drawer.getDimensions();
-    console.log(width, height)
     const aspectRatio = drawer.getAspectRatio();
     
     var points = randomUniform(numberOfPoints, aspectRatio);
