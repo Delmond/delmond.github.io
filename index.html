@@ -20,10 +20,10 @@
     </header>
     
     <div class="content">
-        <h2>~/perlin-delunary</h2>
+        <h2>~/perlin-delaunay</h2>
         <canvas id="perlin"></canvas>
         <p class="description">This animation is done in javascript canvas without any 3rd party libraries. 
-           First we randomly sample points in 2d and compute their deulary triangulation (using the bowyer watson algorithm in this example).
+           First we randomly sample points in 2d and compute their Delaunay triangulation (using the bowyer watson algorithm in this example).
            Then we compute a two dimensional perin noise turn the previously sampled two dimensional points in three dimensioanl points 
            by taking the noise value at each point as the third cordinate value. We then rotate the points using basic linear algebra and use a
            perspective transform the points into screen cordinates. The smooth moving is achieved by increasing the y cordinate of each point by a small amount each frame.
