@@ -56,16 +56,13 @@ nav li {
     color: black;
 }
 
-
 #perlin {
     width: 100%;
     display: block;  /* prevents scrollbar */
     height: 35vh;
 }
+
 @media (max-width:499px){
-    /* #perlin {
-        height: 5em;
-    } */
     nav ul {
         flex-direction:  column;
         padding-right: 0;
