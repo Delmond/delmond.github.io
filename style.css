@@ -86,7 +86,7 @@ nav li {
 }
 
 #selected {
-    background-color: white;
+    background-color: #EEFFFF;
     color: black;
 }
 
@@ -104,9 +104,11 @@ nav li {
     color: #57C7FF;
     padding-right: 5px;
 }
+
 .contact-links a {
-    color: white;
+    color: #EEFFFF;
 }
+
 @media (max-width:499px){
     nav ul {
         flex-direction:  column;
