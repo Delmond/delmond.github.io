@@ -11,10 +11,8 @@ class Drawer {
     }
     
     getDimensions(){
-        // let { clientWidth, clientHeight } = this.context.canvas;
-        // return { height: clientHeight, width: clientWidth };
-        let { width, height } = this.context.canvas;
-        return { width, height};
+        let { clientWidth, clientHeight } = this.context.canvas;
+        return { height: clientHeight, width: clientWidth };
     }
 
     drawPoints(points, fillStyle = "#000000") {

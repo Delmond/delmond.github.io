@@ -1,12 +1,10 @@
 import { Point, Point3D } from './geometry.js';
 import { triangulation, generateTriangulation } from './triangulation.js';
-import { testInsideCircle, testInsideTriangle, testPerlinNoise, testRandomNoise, testPerlinNoise_moving, testCubeProjection } from './tests.js';
+// import { testInsideCircle, testInsideTriangle, testPerlinNoise, testRandomNoise, testPerlinNoise_moving, testCubeProjection } from './tests.js';
 import { Perlin2D } from './perlin.js'
 import { Drawer } from './drawing.js';
 
-// import triangulation from ".triangulation.js";
-
-const numberOfPoints = 2000;
+const numberOfPoints = 6000;
 const dX = 0.
 const dY = 0.005;
 const focalLength = 400;
@@ -68,7 +66,7 @@ function rotateX(point, radian, centerz) {
 function main(){
 
     /********* SETUP *********/
-    var canvas = initializeCanvas("banner");
+    var canvas = initializeCanvas("perlin");
   
     var ctx = canvas.getContext("2d");
     
@@ -76,13 +74,13 @@ function main(){
     var perlin = new Perlin2D(256);
 
     const { width, height } = drawer.getDimensions();
+    console.log(width, height)
     const aspectRatio = drawer.getAspectRatio();
     
     var points = randomUniform(numberOfPoints, aspectRatio);
     var triangles = triangulation(points);
 
     var scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*2000, (point.y - 0.5)*2000))
-    console.log(canvas.clientHeight, canvas.clientWidth);
     
     var offsetX = 0;
     var offsetY = 0;

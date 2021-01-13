@@ -1,44 +1,77 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #e3e3e3;
+    background-color: #1E2541;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }
-canvas {
-    display: block;  /* prevents scrollbar */
-    width: 100vw;
-    height: 100vh;
-}
-#controls {
-    width: 100vw;   
-    height: 5vh;
+
+header {
+    padding: 5px 10px 0 0;
+    font-size: 15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
 }
 
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+.name {
+    color: #C792EA;
 }
-.title {
-    font-size: 2em;
-}
-@media (min-width: 768px) {
-    .container {
-        width: 750px;
-    }
-}
-@media (min-width: 992px) {
-    .container {
-        width: 970px;
-    }
 
+.website {
+    color: #57C7FF;
 }
-@media (min-width: 1200px) {
-    .container {
-        width: 1170px;
-    }
 
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0 3px;
+}
+nav a:not([id]):hover{
+    background-color: white;
+    color: black;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding-right: 20px;
+}
+
+nav li {
+    margin: 0 15px;
+    
+}
+
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+.description {
+    font-size: 1em;
+}
+#selected {
+    background-color: white;
+    color: black;
+}
+
+
+#perlin {
+    width: 100%;
+    display: block;  /* prevents scrollbar */
+    height: 35vh;
+}
+@media (max-width:499px){
+    /* #perlin {
+        height: 5em;
+    } */
+    nav ul {
+        flex-direction:  column;
+        padding-right: 0;
+    }
+    nav li {
+        margin: 0;
+        text-align: right;
+    }
 }
