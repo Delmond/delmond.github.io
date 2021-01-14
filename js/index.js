@@ -1,6 +1,6 @@
 import { Point, Point3D } from './geometry.js';
 import { triangulation, generateTriangulation } from './triangulation.js';
-// import { testInsideCircle, testInsideTriangle, testPerlinNoise, testRandomNoise, testPerlinNoise_moving, testCubeProjection } from './tests.js';
+import { testInsideCircle, testInsideTriangle, testPerlinNoise, testRandomNoise, testPerlinNoise_moving, testCubeProjection } from './tests.js';
 import { Perlin2D } from './perlin.js'
 import { Drawer } from './drawing.js';
 
@@ -67,10 +67,10 @@ function main(){
 
     /********* SETUP *********/
     var canvas = initializeCanvas("perlin");
-  
     var ctx = canvas.getContext("2d");
-    
+
     var drawer = new Drawer(ctx);
+
     var perlin = new Perlin2D(256);
 
     const { width, height } = drawer.getDimensions();
