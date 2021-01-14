@@ -103,9 +103,9 @@ h3 {
     list-style-type: none;
     display: flex
 }
-.inline-list li {
-    padding: 0 5px;
-    margin: 0 5px;
+.skills .inline-list li {
+    padding: 0 3px;
+    margin: 0 4px;
 }
 .skills .inline-list {
     flex-wrap: wrap;
@@ -119,6 +119,7 @@ h3 {
     padding-left: 3px;
     vertical-align: super;
     font-size: smaller;
+
 }
 .experienced::after {
     content: "1";
