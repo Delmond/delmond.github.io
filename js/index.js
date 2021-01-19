@@ -10,7 +10,6 @@ const dY = 0.005;
 const focalLength = 400;
 const perlinScale = 2.5;
 const rotationAngle = -0.5;
-const distanceFromCamera = 2000;
 const noiseHeight = 400;
 
 function initializeCanvas(canvasId){
@@ -70,7 +69,6 @@ function main(){
     var ctx = canvas.getContext("2d");
 
     var drawer = new Drawer(ctx);
-
     var perlin = new Perlin2D(256);
 
     const { width, height } = drawer.getDimensions();
@@ -81,6 +79,7 @@ function main(){
 
     var scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*2000, (point.y - 0.5)*2000))
     
+    var distanceFromCamera = 2000;
     var offsetX = 0;
     var offsetY = 0;
     var loop = () => {

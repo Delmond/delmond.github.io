@@ -41,7 +41,9 @@ header {
     justify-content: space-between;
     margin-bottom: 30px;
 }
-
+.whoami {
+    color: #5AF7B0;
+}
 .name {
     color: #C792EA;
 }
@@ -113,7 +115,6 @@ h3 {
 .skills ul{
     list-style-type: none;
 }
-
 
 .experienced::after, .confortable::after, .beginner::after, .learning::after {
     padding-left: 3px;

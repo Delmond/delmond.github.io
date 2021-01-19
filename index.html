@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-       <div>[<span class="name">Muhamed Delalić</span>@<span class="website">website</span> ~]$:</div>
+       <div>[<span class="name">Muhamed Delalić</span>@<span class="website">website</span> ~]$:<span id="typing"></span></div>
         <nav>
             <ul>
                 <li><a href="/" id="selected">home</a></li>
@@ -20,14 +20,14 @@
     </header>
     
     <div class="content">
-        <p>Welcome to my humble website.</p>
+        <p><span class="whoami">whoami</span> - Welcome to my humble website. I'm Muhamed Delalic, an aspiring software engineer who likes to read and learn about science and engineering related topics. This website serves as a place where I can write about interesting pieces of code that i have implemented.</p>
         <h2>~/perlin-delaunay</h2>
         <canvas id="perlin"></canvas>
         <p class="description">This animation is done in javascript canvas without any 3rd party libraries. 
-           First we randomly sample points in 2d and compute their Delaunay triangulation (using the bowyer watson algorithm in this example).
-           Then we compute a two dimensional perin noise turn the previously sampled two dimensional points in three dimensioanl points 
-           by taking the noise value at each point as the third cordinate value. We then rotate the points using basic linear algebra and use a
-           perspective transform the points into screen cordinates. The smooth moving is achieved by increasing the y cordinate of each point by a small amount each frame.</p>
+           First, we randomly sample points in 2d and compute their Delaunay triangulation (using the Bowyer Watson algorithm in this example).
+           Then we compute a two-dimensional Perlin noise and turn the previously sampled two-dimensional points into three-1dimensional points 
+           by taking the noise value at each point as the third coordinate value. We then rotate the points using basic linear algebra and use a
+           perspective transform the points into screen coordinates. The smooth movement is achieved by increasing the y coordinate of each point by a small amount in each frame.</p>
            <h2>~/skills</h2>
            <div class="skills">
                <ul> 
@@ -51,23 +51,32 @@
                            <li class="experienced">react-native</li>
                            <li class="experienced">openmp</li>
                            <li class="confortable">MPI</li>
-                           <li class="confortable">Spring</li>
-                           <li class="confortable">.NET Core</li>
-                           <li class="confortable">Keras</li>
-                           <li class="beginner">Cuda</li>
-                           <li class="experienced">Eigen</li>
-                       </ul>
-                   </li><li>
-                       <h3>fields</h3>
-                       <ul class="inline-list">
-                           <li class="experienced">web systems</li>
-                           <li class="experienced">distributed systems</li>
-                           <li class="confortable">parallelizaton</li>
-                           <li class="experienced">linear algebra</li>
-                           <li class="confortable">convex optimization</li>
-   
+                           <li class="confortable">spring</li>
+                           <li class="confortable">.NET core</li>
+                           <li class="confortable">keras</li>
+                           <li class="beginner">cuda</li>
+                           <li class="experienced">eigen</li>
                        </ul>
                    </li>
+
+                   <li>
+                       <h3>industry-oriented fields</h3>
+                       <ul class="inline-list">
+                           <li class="experienced">web systems</li>
+                           <li class="confortable">mobile development</li>
+                           <li class="confortable">distributed systems</li>
+                           <li class="confortable">parallelizaton</li>
+                       </ul>
+                   </li>
+                   <li>
+                        <h3>science-oriented fields</h3>
+                        <ul class="inline-list">
+                            <li class="experienced">algorithms</li>
+                            <li class="experienced">linear algebra</li>
+                            <li class="confortable">convex optimization</li>
+                            <li class="confortable">machine learning</li>
+                        </ul>
+                </li>
    
                </ul>
                <div class="legend">
@@ -76,8 +85,7 @@
                        <li class="experienced">experienced</li>
                        <li class="confortable">confortable</li>
                        <li class="beginner">beginner</li>
-                       <li class="learning">learning</li>
-   
+                       <li class="beginner">learning</li>
                    </ul>
                </div>
            </div>
