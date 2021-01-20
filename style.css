@@ -96,6 +96,29 @@ nav li {
     width: 100%;
     display: block;  /* prevents scrollbar */
     height: 35vh;
+    border: 1px solid #57C7FF;
+
+}
+#controls{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    padding: 4px 8px;
+
+}
+#controls li:hover {
+    cursor: pointer;
+}
+
+#controls li {
+    margin: 0 8px;
+    padding: 0 2px;
+    cursor: pointer;
+}
+#controls .selected {
+    color: #1E2541;
+    background-color: #EEFFFF;
 }
 
 h3 {

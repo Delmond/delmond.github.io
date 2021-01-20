@@ -3,6 +3,11 @@ var POINT_RADIUS = 5;
 class Drawer {
     constructor(context) {
         this.context = context;
+
+        this.offscreenCanvas = document.createElement('canvas');
+        this.offscreenCanvas.width = context.canvas.width;
+        this.offscreenCanvas.height = context.canvas.width;  
+        this.offscreenContext = this.offscreenCanvas.getContext("2d");
     }
 
     getAspectRatio(){
@@ -57,6 +62,9 @@ class Drawer {
     clear() {
         let { width, height } = this.context.canvas;
         this.context.clearRect(0, 0, width, height);
+    }
+    render(){
+        this.context.drawImage(this.offscreenCanvas, 0, 0);
     }
 
 }

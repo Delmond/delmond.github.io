@@ -3,6 +3,7 @@ import { triangulation, generateTriangulation } from './triangulation.js';
 import { testInsideCircle, testInsideTriangle, testPerlinNoise, testRandomNoise, testPerlinNoise_moving, testCubeProjection } from './tests.js';
 import { Perlin2D } from './perlin.js'
 import { Drawer } from './drawing.js';
+import { CanvasControls } from './controls.js';
 
 const numberOfPoints = 6000;
 const dX = 0.
@@ -82,18 +83,22 @@ function main(){
     var distanceFromCamera = 2000;
     var offsetX = 0;
     var offsetY = 0;
-    var loop = () => {
-        window.requestAnimationFrame(loop);
+    var noise = null;
+    var triangleColors = null;
+    var rasterizedPoints = null;
+    let color = null;
+    
+    var animation = () => {
 
-        var noise = points.map(point => perlin.at((point.x + offsetX)*perlinScale, (point.y + offsetY)*perlinScale))
+        noise = points.map(point => perlin.at((point.x + offsetX)*perlinScale, (point.y + offsetY)*perlinScale))
         
-        var triangleColors = triangles.map(triangle => {
-            let color = Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]]);
+        triangleColors = triangles.map(triangle => {
+            color = Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]]);
             color = (color + 0.5)*255;
             return "rgb(" + color + "," + color + "," + color + ")";
 
         })
-        var rasterizedPoints = scaledPoints
+        rasterizedPoints = scaledPoints
                                 .map((point, index) => new Point3D(point.x, point.y, noise[index]*noiseHeight - distanceFromCamera))
                                 .map(point => rotateX(point, rotationAngle, -distanceFromCamera))
                                 .map(point => new Point((point.x*focalLength)/point.z, (point.y*focalLength)/point.z))
@@ -101,11 +106,12 @@ function main(){
 
         drawer.clear();
         drawer.drawTriangles(rasterizedPoints, triangles, triangleColors);
+        drawer.render();
         offsetX += dX;
         offsetY += dY;
     }
-
-    loop();
+    var controls = new CanvasControls("controls", animation);
+    // loop();
 }
 
 

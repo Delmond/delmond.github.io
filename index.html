@@ -21,8 +21,12 @@
     
     <div class="content">
         <p><span class="whoami">whoami</span> - Welcome to my humble website. I'm Muhamed Delalic, an aspiring software engineer who likes to read and learn about science and engineering related topics. This website serves as a place where I can write about interesting pieces of code that i have implemented.</p>
-        <h2>~/perlin-delaunay</h2>
+        <h2>~/showcase/perlin-delaunay</h2>
         <canvas id="perlin"></canvas>
+        <ul id="controls">
+            <li id="play">play</li>
+            <li id="pause">pause</li>
+        </ul>
         <p class="description">This animation is done in javascript canvas without any 3rd party libraries. 
            First, we randomly sample points in 2d and compute their Delaunay triangulation (using the Bowyer Watson algorithm in this example).
            Then we compute a two-dimensional Perlin noise and turn the previously sampled two-dimensional points into three-1dimensional points 
@@ -101,6 +105,7 @@
     <script type="module" src="./js/geometry.js"></script>
     <script type="module" src="./js/perlin.js"></script>
     <script type="module" src="./js/drawing.js"></script>
+    <script type="module" src="./js/controls.js"></script>
     <script type="module" src="./js/tests.js"></script>
     <script type="module" src="./js/triangulation.js"></script>
     <script type="module" src="./js/index.js"></script>    
