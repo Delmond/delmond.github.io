@@ -52,17 +52,6 @@ function randomHalton(count, aspectRatio = 1, base_x = 3, base_y = 7){
     return points;
 }
 
-function rotateX(point, radian, centerz) {
-    const cosine = Math.cos(radian);
-    const sine = Math.sin(radian);
-
-    return new Point3D(point.x,
-       (point.y*cosine - (point.z - centerz)*sine),
-       centerz + (point.y*sine + (point.z - centerz)*cosine)
-    );
-};
-
-
 function main(){
 
     /********* SETUP *********/
@@ -78,35 +67,53 @@ function main(){
     var points = randomUniform(numberOfPoints, aspectRatio);
     var triangles = triangulation(points);
 
-    var scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*2000, (point.y - 0.5)*2000))
     
     var distanceFromCamera = 2000;
     var offsetX = 0;
     var offsetY = 0;
-    var noise = null;
-    var triangleColors = null;
-    var rasterizedPoints = null;
-    let color = null;
     
+    const scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*2000, (point.y - 0.5)*2000))
+    
+    var triangleColors = new Array(triangles.length);
+    var noise = new Array(points.length);
+    var rasterizedPoints = scaledPoints.map(_ => new Point3D(0,0,0));
+
     var animation = () => {
 
-        noise = points.map(point => perlin.at((point.x + offsetX)*perlinScale, (point.y + offsetY)*perlinScale))
+        points.forEach((point, index) => {
+            noise[index] = perlin.at((point.x + offsetX)*perlinScale, (point.y + offsetY)*perlinScale);
+        });
         
-        triangleColors = triangles.map(triangle => {
-            color = Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]]);
-            color = (color + 0.5)*255;
-            return "rgb(" + color + "," + color + "," + color + ")";
-
+        triangles.forEach((triangle, index) => {
+            let color = Math.floor((Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]]) + 0.5)*255);
+            triangleColors[index] = "rgb(" + color + "," + color + "," + color + ")"
         })
-        rasterizedPoints = scaledPoints
-                                .map((point, index) => new Point3D(point.x, point.y, noise[index]*noiseHeight - distanceFromCamera))
-                                .map(point => rotateX(point, rotationAngle, -distanceFromCamera))
-                                .map(point => new Point((point.x*focalLength)/point.z, (point.y*focalLength)/point.z))
-                                .map(point => new Point(point.x + width/2, point.y + height/2));
+        
+            
+        rasterizedPoints.forEach((point, index) => {
+            point.x = scaledPoints[index].x;
+            point.y = scaledPoints[index].y;
+            point.z = noise[index]*noiseHeight - distanceFromCamera;
+            
+            point.rotateAroundXAxis(rotationAngle, -distanceFromCamera);
+        })
+        // Project the points onto the camera
+        rasterizedPoints.forEach(point => {
+            point.x = (point.x*focalLength)/point.z;
+            point.y = (point.y*focalLength)/point.z;
+        })
+        
+        // Center the picture on the canvas
+        rasterizedPoints.forEach(point => {
+            point.x = Math.floor(point.x + width/2);
+            point.y = Math.floor(point.y + height/2);
+        })
+        
 
         drawer.clear();
         drawer.drawTriangles(rasterizedPoints, triangles, triangleColors);
         drawer.render();
+
         offsetX += dX;
         offsetY += dY;
     }

@@ -8,6 +8,7 @@ class Drawer {
         this.offscreenCanvas.width = context.canvas.width;
         this.offscreenCanvas.height = context.canvas.width;  
         this.offscreenContext = this.offscreenCanvas.getContext("2d");
+        console.log(this.offscreenContext);
     }
 
     getAspectRatio(){
@@ -21,47 +22,47 @@ class Drawer {
     }
 
     drawPoints(points, fillStyle = "#000000") {
-        this.context.fillStyle = fillStyle;
+        this.offscreenContext.fillStyle = fillStyle;
         points.forEach(point => {
-            this.context.beginPath();
-            this.context.arc(point.x, point.y, POINT_RADIUS, 0, 2*Math.PI);
-            this.context.fill();
+            this.offscreenContext.beginPath();
+            this.offscreenContext.arc(point.x, point.y, POINT_RADIUS, 0, 2*Math.PI);
+            this.offscreenContext.fill();
         });
     }
     
     drawEdges(points, edges, strokeStyle = "#000000") {
-        this.context.strokeStyle = strokeStyle;
+        this.offscreenContext.strokeStyle = strokeStyle;
 
         edges.forEach(edge => {
-            this.context.beginPath();
-            this.context.moveTo(points[edge[0]].x, points[edge[0]].y);
-            this.context.lineTo(points[edge[1]].x, points[edge[1]].y);
-            this.context.stroke();
+            this.offscreenContext.beginPath();
+            this.offscreenContext.moveTo(points[edge[0]].x, points[edge[0]].y);
+            this.offscreenContext.lineTo(points[edge[1]].x, points[edge[1]].y);
+            this.offscreenContext.stroke();
         })
     }
 
     drawTriangles(points, triangles, triangleColors){    
 
         triangles.forEach((triangle, index) => {
-            this.context.fillStyle = triangleColors[index];
-            this.context.beginPath();
-            this.context.moveTo(points[triangle[0]].x, points[triangle[0]].y);
-            this.context.lineTo(points[triangle[1]].x, points[triangle[1]].y);
-            this.context.lineTo(points[triangle[2]].x, points[triangle[2]].y);
-            this.context.closePath();
-            this.context.fill();
+            this.offscreenContext.fillStyle = triangleColors[index];
+            this.offscreenContext.beginPath();
+            this.offscreenContext.moveTo(points[triangle[0]].x, points[triangle[0]].y);
+            this.offscreenContext.lineTo(points[triangle[1]].x, points[triangle[1]].y);
+            this.offscreenContext.lineTo(points[triangle[2]].x, points[triangle[2]].y);
+            this.offscreenContext.closePath();
+            this.offscreenContext.fill();
             
         })
     }
 
     drawPixel(i, j, color  = "#000000"){
-        this.context.fillStyle = color;
-        this.context.fillRect(i, j, 1, 1);
+        this.offscreenContext.fillStyle = color;
+        this.offscreenContext.fillRect(i, j, 1, 1);
     }
 
     clear() {
-        let { width, height } = this.context.canvas;
-        this.context.clearRect(0, 0, width, height);
+        let { width, height } = this.offscreenCanvas;
+        this.offscreenContext.clearRect(0, 0, width, height);
     }
     render(){
         this.context.drawImage(this.offscreenCanvas, 0, 0);

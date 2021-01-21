@@ -31,6 +31,15 @@ class Point3D {
         return new Point3D(a.x - b.x, a.y - b.y, a.z - b.z);
     }
 
+    rotateAroundXAxis(radian, z_center) {
+        const cosine = Math.cos(radian);
+        const sine = Math.sin(radian);
+        const {y, z} = this;
+        this.y = y*cosine - (z - z_center)*sine;
+        this.z = z_center + (y*sine + (z - z_center)*cosine);
+    };
+    
+
 }
 
 class Triangle {

@@ -13,29 +13,35 @@ class CanvasControls {
         } else {
             this.pause.classList.add("selected");
         }
+
         this.loop = () => {
             if (this.playPressed) {
                 window.requestAnimationFrame(this.loop);
             }
             this.animation();
         }
+        
         this.loop();
 
         this.play.addEventListener("click", () => {
-            this.playPressed = true;
-            this.play.classList.toggle("selected");
-            this.pause.classList.toggle("selected");
-            
+            if(this.playPressed)
+                return;
+
+            this.togglePlay();
             this.loop();
             
         })
         this.pause.addEventListener("click", () => {
-            this.playPressed = false;
-            this.play.classList.toggle("selected");
-            this.pause.classList.toggle("selected");
+            if(!this.playPressed)
+                return;
 
+            this.togglePlay();
         })
-        
+    }
+    togglePlay(){
+        this.playPressed = !this.playPressed;
+        this.play.classList.toggle("selected");
+        this.pause.classList.toggle("selected");
     }
 
 }
