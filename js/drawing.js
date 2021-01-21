@@ -8,7 +8,6 @@ class Drawer {
         this.offscreenCanvas.width = context.canvas.width;
         this.offscreenCanvas.height = context.canvas.width;  
         this.offscreenContext = this.offscreenCanvas.getContext("2d");
-        console.log(this.offscreenContext);
     }
 
     getAspectRatio(){
