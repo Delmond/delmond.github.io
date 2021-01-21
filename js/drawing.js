@@ -64,6 +64,8 @@ class Drawer {
         this.offscreenContext.clearRect(0, 0, width, height);
     }
     render(){
+        let { width, height } = this.offscreenCanvas;
+        this.context.clearRect(0, 0, width, height);
         this.context.drawImage(this.offscreenCanvas, 0, 0);
     }
 
