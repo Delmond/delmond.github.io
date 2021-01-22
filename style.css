@@ -138,23 +138,23 @@ h3 {
     list-style-type: none;
 }
 
-.experienced::after, .confortable::after, .beginner::after, .learning::after {
+.experienced::after, .confident::after, .beginner::after{
     padding-left: 3px;
     vertical-align: super;
     font-size: smaller;
 
 }
 .experienced::after {
-    content: "1";
+    content: "■";
+    color: #5AF7B0;
 }
-.confortable::after {
-    content: "2";
+.confident::after {
+    content: "■";
+    color: #FFA56B;
 }
 .beginner::after {
-    content: "3";
-}
-.learning::after {
-    content: "4";
+    content: "■";
+    color: #EEFFFF;
 }
 
 
