@@ -5,9 +5,9 @@ import { Perlin2D } from './perlin.js'
 import { Drawer } from './drawing.js';
 import { CanvasControls } from './controls.js';
 
-const numberOfPoints = 6000;
+const numberOfPoints = 2000;
 const dX = 0.
-const dY = 0.005;
+const dY = 0.003;
 const focalLength = 400;
 const perlinScale = 2.5;
 const rotationAngle = -0.5;
@@ -52,6 +52,28 @@ function randomHalton(count, aspectRatio = 1, base_x = 3, base_y = 7){
     return points;
 }
 
+function getDistanceFromCamera(aspectRatio, width) {
+    // Calculate distanceFromCamra so that every point fits.
+    // We can pick a corner and caluclate it based on that
+    // The corner we take is (-aspectRatio/2*width, -0,5*width)
+    // Lets focus on the x cordinate -aspectRatio/2*width stays unchanged from the x rotation
+    //  
+    // -aspectRatio/2*width *focal_length/(point.z*noiseHeight - dinstanceFromCamera) == width/2
+    // -aspectRation*focal_length/(Z*noiseHeight - distanceFromCamera) == 1
+    // distanceFromCamera = aspectRatio*focal_length + Z*noiseHeigth
+    // Z = -distanceFromCamera + -width/2*sine - cosine + distanceFromCamera*cosine
+    // distanceFromCamera = aspectRatio*focal_length + -distanceFromCamera*noiseHeight +distanceFromCamera*cosine*noiseHeight - (width/2*sine* -cosine)*noiseHeight
+    // distanceFromCamera = (aspectRatio*focal_length - (width/2*sine - cosine)*noiseHeight)/(1 + noiseHeight - cosine*noiseHeight)
+
+
+    const cosine = Math.cos(rotationAngle);
+    const sine = Math.sin(rotationAngle);
+
+    // TODO: Fix this monstrosity  of an equation for calculating the best distance from the camera so that 
+    // the entire animation fits nicely in the window
+    return (aspectRatio*focalLength - (width/2*sine - cosine)*noiseHeight)/(1 + noiseHeight - cosine*noiseHeight);
+}
+
 function main(){
 
     /********* SETUP *********/
@@ -68,14 +90,14 @@ function main(){
     var triangles = triangulation(points);
 
     
-    var distanceFromCamera = 2000;
+    var distanceFromCamera = getDistanceFromCamera(aspectRatio, width);
     var offsetX = 0;
     var offsetY = 0;
     
-    const scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*2000, (point.y - 0.5)*2000))
+    const scaledPoints = points.map(point => new Point((point.x - aspectRatio/2)*width, (point.y - 0.5)*width))
     
     var triangleColors = new Array(triangles.length);
-    var noise = new Array(points.length);
+    var noise = new Float32Array(points.length);
     var rasterizedPoints = scaledPoints.map(_ => new Point3D(0,0,0));
 
     var animation = () => {
@@ -85,7 +107,7 @@ function main(){
         });
         
         triangles.forEach((triangle, index) => {
-            let color = Math.floor((Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]]) + 0.5)*255);
+            let color = Math.floor((Math.max(noise[triangle[0]], noise[triangle[1]], noise[triangle[2]])/2 + 0.5)*255);
             triangleColors[index] = "rgb(" + color + "," + color + "," + color + ")"
         })
         

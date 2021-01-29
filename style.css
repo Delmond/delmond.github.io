@@ -127,6 +127,13 @@ h3 {
     list-style-type: none;
     display: flex
 }
+.skills {
+    display: flex;
+}
+
+.legend > ul {
+    list-style-type: none;
+}
 .skills .inline-list li {
     padding: 0 3px;
     margin: 0 4px;
@@ -179,6 +186,9 @@ h3 {
     nav li {
         margin: 0;
         text-align: right;
+    }
+    .skills {
+        display: block;
     }
     
 }
