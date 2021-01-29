@@ -8,7 +8,7 @@ import { CanvasControls } from './controls.js';
 const numberOfPoints = 2000;
 const dX = 0.
 const dY = 0.003;
-const focalLength = 400;
+const focalLength = 550;
 const perlinScale = 2.5;
 const rotationAngle = -0.5;
 const noiseHeight = 400;
