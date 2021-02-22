@@ -151,16 +151,21 @@ h3 {
     content: "■";
     color: #EEFFFF;
 }
-.contact-links {
+.contact-links, .resource-list ul {
     list-style-type: none;
 }
 .contact-links span {
     color: #57C7FF;
     padding-right: 5px;
 }
-.contact-links a {
-    color: #EEFFFF;
+
+.resource-list {
+    padding-top: 20px;
 }
+.resource-list a, .resource {
+    color: #57C7FF;
+}
+
 @media (max-width:499px){
     nav ul {
         flex-direction:  column;
