@@ -11,7 +11,6 @@ const dY = 0.003;
 const focalLength = 550;
 const perlinScale = 2.5;
 const rotationAngle = -0.5;
-const noiseHeight = 400;
 
 function initializeCanvas(canvasId){
     var canvas = document.getElementById(canvasId);
@@ -52,7 +51,13 @@ function randomHalton(count, aspectRatio = 1, base_x = 3, base_y = 7){
     return points;
 }
 
-function getDistanceFromCamera(aspectRatio, width) {
+function getNoiseHeight(width) {
+    const base = 230;
+    // Increase the height using a quadratic gain
+    return base + width/7;
+}
+
+function getDistanceFromCamera(aspectRatio, noiseHeight, width) {
     // Calculate distanceFromCamra so that every point fits.
     // We can pick a corner and caluclate it based on that
     // The corner we take is (-aspectRatio/2*width, -0,5*width)
@@ -88,9 +93,8 @@ function main(){
     
     var points = randomUniform(numberOfPoints, aspectRatio);
     var triangles = triangulation(points);
-
-    
-    var distanceFromCamera = getDistanceFromCamera(aspectRatio, width);
+    var noiseHeight = getNoiseHeight(canvas.width);
+    var distanceFromCamera = getDistanceFromCamera(aspectRatio, noiseHeight, width);
     var offsetX = 0;
     var offsetY = 0;
     
