@@ -159,6 +159,9 @@ h3 {
     padding-right: 5px;
 }
 
+.contact-links a {
+    color: #EEFFFF;
+}
 .resource-list {
     padding-top: 20px;
 }
